@@ -1,0 +1,310 @@
+/* Glassmorphic Modern Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.match-game-container {
+    background: linear-gradient(45deg, #ff758c 0%, #ff7eb3 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    min-width: 100vw;
+    backdrop-filter: blur(20px);
+}
+
+/* Glass Navbar */
+.navbar {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(158, 136, 136, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.website-logo {
+    height: 45px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.score-timer-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.score {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timer-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.timer-logo {
+    width: 22px;
+    filter: brightness(0) invert(1);
+}
+
+.timer {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Glass Game Container */
+.game-container {
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+.main-match-image {
+    width: min(90%, 400px);
+    border-radius: 12px;
+    margin: 1rem auto 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+/* Glass Tabs */
+.tabs-container {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.tabs-container button {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgb(11, 11, 11);
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.active-tab {
+    background: rgba(105, 48, 48, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.tabs-container button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Glass Thumbnails */
+.thumbnails-container {
+    list-style: none;
+    display: grid;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.thumbnail-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-image {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.thumbnail-btn:hover .thumbnail-image {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.back-button {
+    display: inline-block;
+    border: 1px solid rgb(192, 180, 180);
+    margin-top: 2rem;
+    width: inherit;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 100px;
+    font-size: 20px;
+    color: white;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.back-button:hover {
+    background: rgba(158, 136, 136, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Glass Game Over Screen */
+.game-over-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.trophy {
+    width: 150px;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.final-score {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    margin: 1.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.play-again-btn {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.8rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.play-again-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reset-img {
+    width: 20px;
+    filter: brightness(0) invert(1);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .match-game-container {
+        padding: 1rem;
+    }
+    .score-timer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0.7rem;
+    }
+
+    .navbar {
+        padding: 0.8rem;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 160px;
+    }
+
+    .thumbnails-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .game-over-container {
+        padding: 1.5rem;
+        width: 90%;
+    }
+
+    .tabs-container button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .thumbnails-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .game-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .thumbnails-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .main-match-image {
+        width: 400px;
+    }
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.trophy {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.game-container, .game-over-container {
+    animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}

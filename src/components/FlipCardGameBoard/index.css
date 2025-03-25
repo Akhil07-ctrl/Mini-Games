@@ -1,0 +1,109 @@
+/* GameBoard Component Styles */
+.container {
+    padding: 1rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #2c3e50;
+    transition: font-size 0.3s ease;
+  }
+  
+  .board {
+    display: grid;
+    gap: 0.8rem;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  .comments {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    text-align: center;
+    color: #34495e;
+    font-weight: bold;
+  }
+  
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: #3f7a58;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem;
+    width: 150px;
+    display: inline-block;
+  }
+  
+  .button:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Breakpoints for GameBoard */
+  @media (max-width: 575px) {
+    .board {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 300px;
+    }
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .board {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 500px;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .board {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 700px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .board {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 900px;
+    }
+    
+    .button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .board {
+      grid-template-columns: repeat(6, 1fr);
+      max-width: 1200px;
+    }
+    
+    .header h1 {
+      font-size: 3rem;
+    }
+  }

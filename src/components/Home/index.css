@@ -1,0 +1,207 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Clock - positioned at top right */
+  .clock {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffffff;
+    font-size: 1rem;
+  }
+  
+  /* Greeting message */
+  .greeting {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  /* Glassmorphic Container */
+  .home-container {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 2rem;
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Title Styling */
+  .title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  /* Games List: 2 Items per Row */
+  .games-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+    gap: 1.5rem;
+  }
+  
+  /* Remove Underline from Links */
+  .game-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+  }
+
+  .game-logo {
+    width: 50px;  /* Base size */
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Game Item Style */
+  .game-item {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #fff;
+    transition:
+      transform 0.3s ease,
+      background 0.3s ease;
+    cursor: pointer;
+    min-height: 170px;
+  }
+  
+  .game-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.35);
+  }
+  
+  /* Footer Styling */
+  .footer {
+    text-align: center;
+    color: #fff;
+    margin-top: 2rem;
+  }
+  
+  .footer p {
+    margin: 0.5rem 0;
+  }
+  
+  .linkedin-icon,
+  .github-icon {
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    color: #44266b;
+  }
+  
+  /* Responsive Typography & Padding */
+  
+  /* Extra Small Devices (portrait phones, less than 576px) */
+  @media (max-width: 575px) {
+    .title {
+      font-size: 1.5rem;
+    }
+    .game-logo {
+      width: 40px;
+    }
+    .game-item {
+      font-size: 0.9rem;
+      padding: 1.2rem;
+      min-height: 120px;
+    }
+    .clock {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Small Devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) and (max-width: 767px) {
+    .title {
+      font-size: 1.8rem;
+    }
+    .game-logo {
+      width: 45px;
+    }
+    .game-item {
+      font-size: 1rem;
+      padding: 1.3rem;
+      min-height: 170px;
+    }
+  }
+  
+  /* Medium Devices (tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .title {
+      font-size: 2rem;
+    }
+    .game-logo {
+      width: 50px;
+    }
+    .game-item {
+      font-size: 1.1rem;
+      padding: 1.4rem;
+      min-height: 180px;
+    }
+  }
+  
+  /* Large Devices (desktops, 992px and up) */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .title {
+      font-size: 2.2rem;
+    }
+    .game-logo {
+      width: 55px;
+    }
+    .game-item {
+      font-size: 1.2rem;
+      padding: 1.5rem;
+      min-height: 190px;
+    }
+  }
+  
+  /* Extra Large Devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .title {
+      font-size: 2.5rem;
+    }
+    .game-logo {
+      width: 60px;
+    }
+    .game-item {
+      font-size: 1.3rem;
+      padding: 1.6rem;
+      min-height: 200px;
+    }
+  }
+  

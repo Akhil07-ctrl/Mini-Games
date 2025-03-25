@@ -1,0 +1,85 @@
+/* FlipCardItem Component Styles */
+.item {
+  perspective: 1000px;
+  aspect-ratio: 1/1;
+  margin: 0.5rem;
+}
+
+.item > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.toggled {
+  transform: rotateY(180deg);
+}
+
+.face, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.face {
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+
+.back {
+  background-color: #3498db;
+  border: 3px solid #2980b9;
+  transition: background-color 0.3s ease;
+}
+
+/* Card Size for Different Devices */
+@media (max-width: 575px) {
+  .item {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (min-width: 576px) {
+  .item {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 768px) {
+  .item {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (min-width: 992px) {
+  .item {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .item {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Mobile Touch Optimization */
+@media (hover: none) {
+  .back:hover {
+    background-color: #3498db;
+  }
+}
