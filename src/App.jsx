@@ -13,7 +13,7 @@ import MatchGameHome from './components/MatchGameHome'
 import './App.css'
 
 const App = () => (
-  <Router>
+  <Router basename='/Mini-Games/'>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/emoji-game-home" element={<EmojiGameHomePage />} />
