@@ -4,10 +4,10 @@ import './index.css';
 const EmojiGameHomePage = () => {
   return (
     <div className="container">
-      <h1 className="welcome-title">Welcome to The <br /> Emoji Game</h1>
+      <h1 className="welcome-title">Welcome to<br /> Emoji Memory</h1>
         <div className="rules-logo-container">
           <img 
-            src="Emoji-Logo.png" 
+            src="https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966834/Emoji-Logo_aluka5.png" 
             alt="Emoji" 
             className="side-image"
           />

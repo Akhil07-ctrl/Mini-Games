@@ -141,7 +141,7 @@ class EmojiGameHome extends Component {
           <div className="modal-overlay">
             <div className="modal-content">
               <img
-                src="Emoji-Game-Rules.png"
+                src="https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966834/Emoji-Game-Rules_sqkm82.png"
                 alt="Rules"
                 className="modal-image"
               />

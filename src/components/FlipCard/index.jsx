@@ -4,10 +4,10 @@ import './index.css';
 const FlipCard = () => {
   return (
     <div className="container">
-      <h1 className="welcome-title">Welcome to The <br /> Flip Card</h1>
+      <h1 className="welcome-title">Welcome to<br /> Flip Card</h1>
         <div className="rules-logo-container">
           <img 
-            src="Flip-Card-Logo.png" 
+            src="https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966834/Flip-Card-Logo_rzygvw.png" 
             alt="Emoji" 
             className="side-image"
           />

@@ -7,7 +7,7 @@ const EmojiGameHomePage = () => {
       <h1 className="welcome-title">Welcome to <br /> Rock Paper Scissors</h1>
         <div className="rules-logo-container">
           <img 
-            src="RPS-Logo.png" 
+            src="https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966837/RPS-Logo_cibkvz.png" 
             alt="Emoji" 
             className="side-image"
           />

@@ -4,14 +4,14 @@ import {FaLinkedin, FaGithub, FaClock} from 'react-icons/fa'
 import './index.css'
 
 const miniGames = [
-  {id: 'emojiGame', name: 'Emoji Game', path: 'emoji-game-home', imageUrl: "Emoji-Logo.png"},
+  {id: 'emojiGame', name: 'Emoji Memory', path: 'emoji-game-home', imageUrl: "https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966834/Emoji-Logo_aluka5.png"},
   {
     id: 'rockPaperScissors',
     name: 'Rock Paper Scissors',
-    path: 'rock-paper-scissors-home', imageUrl: "RPS-Logo.png"
+    path: 'rock-paper-scissors-home', imageUrl: "https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966837/RPS-Logo_cibkvz.png"
   },
-  {id: 'matchGame', name: 'Match Game', path: 'match-game-home', imageUrl: "Match-Game-Logo.png"},
-  {id: 'flipCard', name: 'Flip Card', path: 'flip-card-home', imageUrl: "Flip-Card-Logo.png"},
+  {id: 'matchGame', name: 'Card Match', path: 'match-game-home', imageUrl: "https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966837/Match-Game-Logo_nk3f2c.png"},
+  {id: 'flipCard', name: 'Flip Card', path: 'flip-card-home', imageUrl: "https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966834/Flip-Card-Logo_rzygvw.png"},
 ]
 
 // Clock component to display current time

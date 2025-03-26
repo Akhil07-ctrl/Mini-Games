@@ -22,6 +22,7 @@ function FlipCardGameBoard() {
   const [secondCard, setSecondCard] = React.useState(null);
   const [stopFlip, setStopFlip] = React.useState(false);
   const [won, setWon] = React.useState(0);
+  const [showPopup, setShowPopup] = React.useState(false);
 
   // Update localStorage whenever moves changes.
   React.useEffect(() => {
@@ -94,6 +95,14 @@ function FlipCardGameBoard() {
     NewGame();
   }, []);
 
+  const openPopup = () => {
+    setShowPopup(true);
+  }
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -127,7 +136,24 @@ function FlipCardGameBoard() {
           Wanna play again? Click on 'New Game' button below!
         </div>
       )}
+      {showPopup && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <img
+                src="https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966834/Flip-Card-Rules_a0lj8a.png"
+                alt="Rules"
+                className="modal-image"
+              />
+              <button className="close-button" onClick={closePopup}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       <div className="buttons-container">
+        <button className="button" onClick={openPopup}>
+          Rules
+        </button>
         <button className="button" onClick={NewGame}>
           New Game
         </button>

@@ -290,7 +290,7 @@ class RpsHomePage extends Component {
             {close => (
               <PopUpBody>
                 <PopUpImage
-                  src="RPS-Rules.png"
+                  src="https://res.cloudinary.com/dgsmgz8zl/image/upload/v1742966838/RPS-Rules_y7bt7g.png"
                   alt="rules"
                 />
 
