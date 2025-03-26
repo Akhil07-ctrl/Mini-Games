@@ -10,8 +10,8 @@ const EmojiNavBar = ({score, topscore}) => (
       <h1>Emoji Memory</h1>
     </div>
     <div className="right">
+      <p className="score">Top Score: {topscore}</p>
       <p className="score">Score: {score}</p>
-      <p className="top-score">Top Score: {topscore}</p>
     </div>
   </nav>
 )

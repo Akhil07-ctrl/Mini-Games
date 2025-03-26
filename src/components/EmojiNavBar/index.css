@@ -38,10 +38,10 @@ nav {
   }
   
   /* Small devices (phones, 360px and up) */
-  @media (min-width: 360px) {
+  @media (max-width: 576px) {
     nav {
       padding: 10px 0;
-      height: 60px; /* Slightly taller for small devices */
+      height: 85px; /* Slightly taller for small devices */
     }
   
     .left {
@@ -61,11 +61,13 @@ nav {
     .right {
       margin-right: 10px;
       gap: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
   
-    .score,
-    .top-score {
-      font-size: 14px; /* Slightly larger text */
+    .score {
+      font-size: 12px;
     }
   }
   
