@@ -104,7 +104,7 @@ function FlipCardGameBoard() {
   };
 
   return (
-    <div className="container">
+    <div className="flip-card-game-board-container">
       <div className="header">
         <h1>Flip Card</h1>
       </div>

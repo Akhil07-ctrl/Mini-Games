@@ -1,5 +1,5 @@
 
-.container {
+.flip-card-container {
     width: 90%;
     max-width: 500px;
     margin: 20px auto;
@@ -32,15 +32,15 @@
     margin-bottom: 20px;
   }
   
-  .side-image {
-    width: 150px;
+  .flip-image {
+    width: 340px;
     height: auto;
     border-radius: 8px;
     border: 2px solid rgba(255, 255, 255, 0.4);
   }
   
   /* Button Row: vertical stacking */
-  .button-row {
+  .flip-card-buttons-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -51,11 +51,11 @@
   }
   
   /* Remove underline from anchor tags wrapping the buttons */
-  .button-row a {
+  .flip-card-buttons-container a {
     text-decoration: none;
   }
   
-  .action-button {
+  .flip-button {
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
@@ -64,14 +64,13 @@
     color: #262222;
     cursor: pointer;
     transition: background 0.3s ease;
-    width: 100%;
-    max-width: 250px;
+    width: 175px;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
   
-  .action-button:hover {
+  .flip-button:hover {
     background: rgba(47, 116, 139, 0.4);
   }
   
@@ -79,9 +78,6 @@
   @media (min-width: 481px) {
     .welcome-title {
       font-size: 2rem;
-    }
-    .side-image {
-      width: 180px;
     }
   }
   
@@ -92,28 +88,22 @@
       justify-content: center;
       align-items: center;
     }
-    .side-image {
-      width: 200px;
-    }
-    .button-row {
-      flex-direction: row;
+    .flip-card-buttons-container {
+      flex-direction: column;
       gap: 20px;
     }
   }
   
   /* Large Devices (1025px and up) */
   @media (min-width: 1025px) {
-    .container {
+    .flip-card-container {
       max-width: 960px;
       padding: 40px;
     }
     .welcome-title {
       font-size: 2.5rem;
     }
-    .side-image {
-      width: 220px;
-    }
-    .action-button {
+    .flip-button {
       font-size: 1.1rem;
       padding: 12px 24px;
     }
@@ -121,17 +111,14 @@
   
   /* Extra Large Devices (1441px and up) */
   @media (min-width: 1441px) {
-    .container {
+    .flip-card-container {
       max-width: 1200px;
       padding: 50px;
     }
     .welcome-title {
       font-size: 3rem;
     }
-    .side-image {
-      width: 250px;
-    }
-    .action-button {
+    .flip-button {
       font-size: 1.2rem;
       padding: 14px 28px;
     }
