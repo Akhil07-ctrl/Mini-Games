@@ -1,0 +1,333 @@
+.emoji-game-container {
+  min-height: 100vh;
+  min-width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emoji-content {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-title-logo {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.emoji-title-logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+}
+
+.emoji-game-container h1 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-top: 15px;
+}
+
+.emoji-score p {
+  margin-left: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Game Header */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.game-header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: 500;
+  gap: 8px;
+}
+
+.game-header button {
+  background-color: #3e4c59;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.game-header button:hover {
+  background-color: #323f4b;
+}
+
+/* Emoji Results View */
+.play-again {
+  border: none;
+  background-color: #ffce27;
+  border-radius: 5px;
+  color: black;
+  padding: 6px 12px; /* Further reduced padding for extra small devices */
+  font-size: 12px; /* Smaller font size for extra small devices */
+  margin: 8px 0; /* Reduced margin for extra small devices */
+  width: 100%; /* Full width on mobile */
+  max-width: 180px; /* Slightly smaller max-width for extra small devices */
+  cursor: pointer;
+}
+
+.win-lose-card {
+  color: white;
+  padding: 8px; /* Further reduced padding for extra small devices */
+  border-radius: 6px; /* Slightly smaller border radius */
+  background-color: #ffffff33;
+  display: flex;
+  flex-direction: column; /* Stack items vertically on mobile */
+  align-items: center; /* Center items */
+  margin-top: 20px; /* Reduced margin for extra small devices */
+  width: 90%; /* Take most of screen width */
+  max-width: 350px; /* Slightly smaller max-width for extra small devices */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.left-content {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Smaller gap for extra small devices */
+  text-align: center; /* Center text */
+  padding: 8px 0; /* Reduced padding for extra small devices */
+}
+
+.emoji-win-lose-score {
+  color: black;
+  font-size: 12px; /* Smaller font size for extra small devices */
+}
+
+.best-score {
+  font-size: 14px; /* Smaller font size for extra small devices */
+  font-weight: bold;
+  margin: 6px 0; /* Reduced margin for extra small devices */
+  color: black;
+}
+
+.lose-win-heading {
+  font-weight: bold;
+  font-size: 18px; /* Smaller font size for extra small devices */
+  line-height: 1.2; /* Tighter line spacing for extra small devices */
+  text-align: center;
+  color: black;
+}
+
+/* Emoji List */
+.emoji-list-container {
+  width: 100%;
+}
+
+.emoji-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.emoji-list li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  padding: 10px;
+}
+
+.emoji-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emoji-list img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .emoji-score p {
+    margin-left: 0;
+  }
+
+  .emoji-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .emoji-list img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emoji-game-container {
+    padding: 10px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .emoji-score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .emoji-title-logo h1 {
+    font-size: 1.3rem;
+  }
+
+  .emoji-score p {
+    font-size: 0.9rem;
+  }
+
+  .emoji-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .emoji-list img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rules-popup {
+    padding: 20px 15px;
+  }
+
+  .rules-popup h3 {
+    font-size: 1.5rem;
+  }
+
+  .rules-list-popup li {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small devices (phones, 360px and up) */
+@media (min-width: 360px) {
+  .play-again {
+    padding: 8px 16px;
+    font-size: 14px;
+    max-width: 200px;
+  }
+
+  .win-lose-card {
+    padding: 10px;
+    margin-top: 30px;
+    max-width: 400px;
+  }
+
+  .left-content {
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .emoji-win-lose-score {
+    font-size: 14px;
+  }
+
+  .best-score {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+
+  .lose-win-heading {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 576px) {
+  .play-again {
+    padding: 10px 20px;
+    font-size: 16px;
+    width: auto;
+  }
+
+  .win-lose-card {
+    flex-direction: row; /* Horizontal layout on tablets+ */
+    justify-content: space-around;
+    padding: 15px;
+    margin-top: 60px;
+    width: auto;
+    max-width: 600px;
+  }
+
+  .left-content {
+    gap: 20px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .emoji-win-lose-score {
+    font-size: 16px;
+  }
+
+  .best-score {
+    font-size: 20px;
+  }
+
+  .lose-win-heading {
+    font-size: 24px;
+    text-align: left;
+  }
+}
