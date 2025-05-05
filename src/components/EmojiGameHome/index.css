@@ -13,6 +13,33 @@
   max-width: 1200px;
 }
 
+/* Game Header */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.game-header a, .game-header button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  gap: 8px;
+}
+
+.game-header a:hover, .game-header button:hover {
+  background-color: #f0f0f0;
+}
+
 /* Navigation */
 nav {
   display: flex;
@@ -50,37 +77,6 @@ nav {
   font-size: 1rem;
   font-weight: 500;
   color: #2c3e50;
-}
-
-/* Game Header */
-.game-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.game-header a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #2c3e50;
-  font-weight: 500;
-  gap: 8px;
-}
-
-.game-header button {
-  background-color: #3e4c59;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 16px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.game-header button:hover {
-  background-color: #323f4b;
 }
 
 /* Emoji Results View */
@@ -173,10 +169,18 @@ nav {
   cursor: pointer;
   width: 100%;
   height: 100%;
-  transition: transform 0.2s;
+  transition: transform 0.1s;
   border-radius: 8px;
   background-color: #f8fafc;
   padding: 10px;
+}
+
+.emoji-button:active {
+  transform: scale(0.95);
+}
+
+.emoji-button.clicked {
+  animation: none !important; /* Disables any persistent animation */
 }
 
 .emoji-button:hover {
@@ -188,6 +192,114 @@ nav {
   width: 60px;
   height: 60px;
   object-fit: contain;
+}
+
+/* Remove any persistent animations */
+.emoji-img {
+  transition: transform 0.1s ease-out;
+}
+
+/* Click animation (optional) */
+.emoji-button:active .emoji-img {
+  transform: scale(0.9);
+}
+
+/* Reset animations after shuffle */
+.emoji-list {
+  animation: none !important;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-header h2 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #7f8c8d;
+}
+
+.close-button:hover {
+  color: #e74c3c;
+}
+
+.rules-content {
+  text-align: left;
+}
+
+.rules-list {
+  margin-bottom: 25px;
+  padding-left: 20px;
+}
+
+.rules-list li {
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+.cards-list-in-modal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.cards-list-in-modal li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.cards-list-in-modal img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.cards-list-in-modal span {
+  font-size: 14px;
+  color: #2c3e50;
 }
 
 /* Responsive Adjustments */

@@ -1,8 +1,13 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {BiArrowBack} from 'react-icons/bi'
+import {CgClose} from "react-icons/cg"
+import Modal from "react-modal"
+import { saveToLocalStorage, getFromLocalStorage } from '../../utils/localStorage'
 
-import './EmojiGameHome.css'
+import './index.css'
+
+Modal.setAppElement('#root')
 
 const emojisList = [
   {
@@ -105,9 +110,17 @@ const EmojiGameHome = () => {
   const [currentEmojis, setCurrentEmojis] = useState(emojisList)
   const [gameOver, setGameOver] = useState(false)
   const [gameWon, setGameWon] = useState(false)
+  const [isRulesModalOpen, setIsRulesModalOpen] = useState(false)
+  const [shuffleKey, setShuffleKey] = useState(0);
 
-  // Shuffle emojis on component mount
+  // Load saved data and shuffle emojis on component mount
   useEffect(() => {
+    // Load top score from localStorage
+    const savedData = getFromLocalStorage('emojiGame', {
+      topScore: 0
+    })
+    
+    setTopScore(savedData.topScore)
     setCurrentEmojis(shuffleEmojis(emojisList))
   }, [])
 
@@ -123,6 +136,10 @@ const EmojiGameHome = () => {
       // Update top score if current score is higher
       if (score > topScore) {
         setTopScore(score)
+        // Save to localStorage
+        saveToLocalStorage('emojiGame', {
+          topScore: score
+        })
       }
     } else {
       // Add emoji to clicked list
@@ -133,6 +150,8 @@ const EmojiGameHome = () => {
       const newScore = score + 1
       setScore(newScore)
 
+      // Force DOM update by changing key
+      setShuffleKey(prev => prev + 1);
       // Shuffle emojis for next round
       setCurrentEmojis(shuffleEmojis(emojisList))
 
@@ -141,6 +160,10 @@ const EmojiGameHome = () => {
         setGameWon(true)
         setGameOver(true)
         setTopScore(emojisList.length)
+        // Save perfect score to localStorage
+        saveToLocalStorage('emojiGame', {
+          topScore: emojisList.length
+        })
       }
     }
   }
@@ -148,9 +171,18 @@ const EmojiGameHome = () => {
   const resetGame = () => {
     setScore(0)
     setClickedEmojis([])
+    setShuffleKey(prev => prev + 1); // Reset animations
     setCurrentEmojis(shuffleEmojis(emojisList))
     setGameOver(false)
     setGameWon(false)
+  }
+  
+  const openRulesModal = () => {
+    setIsRulesModalOpen(true)
+  }
+
+  const closeRulesModal = () => {
+    setIsRulesModalOpen(false)
   }
 
   const resultImage = gameWon ? (
@@ -168,6 +200,15 @@ const EmojiGameHome = () => {
   return (
     <div className="emoji-game-container">
       <div className="emoji-content">
+        <div className="game-header">
+          <Link to="/emoji-game">
+            <BiArrowBack /> Back to Rules
+          </Link>
+          <button type="button" onClick={openRulesModal}>
+            Rules
+          </button>
+        </div>
+        
         <nav>
           <div className="emoji-title-logo">
             <img
@@ -183,14 +224,59 @@ const EmojiGameHome = () => {
         </nav>
 
         <div>
-          <div className="game-header">
-            <Link to="/emoji-game">
-              <BiArrowBack /> Back to Rules
-            </Link>
-            <button type="button" onClick={() => alert('Rules Coming Soon...')}>
-              Rules
-            </button>
-          </div>
+          
+          {/* Rules Modal */}
+          <Modal
+            isOpen={isRulesModalOpen}
+            onRequestClose={closeRulesModal}
+            contentLabel="Game Rules"
+            className="modal-content"
+            overlayClassName="modal-overlay"
+          >
+            <div className="modal-header">
+              <h2>Rules</h2>
+              <button
+                onClick={closeRulesModal}
+                className="close-button"
+                data-testid="close"
+              >
+                <CgClose />
+              </button>
+            </div>
+
+            <div className="rules-content">
+              <ul className="rules-list">
+                <li>
+                  Try to click on each emoji only once.
+                </li>
+                <li>
+                  If you click on the same emoji twice, you lose the game.
+                </li>
+                <li>
+                  After each click, the emojis will be shuffled.
+                </li>
+                <li>
+                  Your score increases by 1 for each unique emoji you click.
+                </li>
+                <li>
+                  Your top score is the highest score you've achieved so far.
+                </li>
+                <li>
+                  If you click on all 12 emojis without repeating, you win!
+                </li>
+              </ul>
+
+              <h3>Emoji List:</h3>
+              <ul className="cards-list-in-modal">
+                {emojisList.map(emoji => (
+                  <li key={emoji.id}>
+                    <img src={emoji.emojiUrl} alt={emoji.alt} />
+                    <span>{emoji.emojiName}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Modal>
 
           {gameOver ? (
             <div className="win-lose-card">
@@ -214,12 +300,12 @@ const EmojiGameHome = () => {
             </div>
           ) : (
             <div className="emoji-list-container">
-              <ul className="emoji-list">
+              <ul className="emoji-list" key={shuffleKey}>
                 {currentEmojis.map(emoji => (
                   <li key={emoji.id}>
                     <button
                       type="button"
-                      className="emoji-button"
+                      className={`emoji-button ${clickedEmojis.includes(emoji.id) ? 'clicked' : ''}`}
                       onClick={() => handleEmojiClick(emoji.id)}
                       aria-label={emoji.emojiName}
                     >

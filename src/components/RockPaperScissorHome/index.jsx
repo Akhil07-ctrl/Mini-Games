@@ -1,7 +1,12 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {BiArrowBack} from 'react-icons/bi'
+import {CgClose} from "react-icons/cg"
+import Modal from "react-modal"
+import { saveToLocalStorage, getFromLocalStorage } from '../../utils/localStorage'
 import './RockPaperScissorHome.css'
+
+Modal.setAppElement('#root')
 
 const gameStatusConstants = {
   inProgress: 'IN_PROGRESS',
@@ -69,6 +74,17 @@ const RockPaperScissorHome = () => {
   const [gameStatus, setGameStatus] = useState(gameStatusConstants.inProgress)
   const [userChoice, setUserChoice] = useState(null)
   const [opponentChoice, setOpponentChoice] = useState(null)
+  const [isRulesModalOpen, setIsRulesModalOpen] = useState(false)
+  const [highestScore, setHighestScore] = useState(0)
+  
+  // Load saved data from localStorage on component mount
+  useEffect(() => {
+    const savedData = getFromLocalStorage('rockPaperScissor', {
+      highestScore: 0
+    })
+    
+    setHighestScore(savedData.highestScore)
+  }, [])
 
   const getRandomChoice = () => {
     const randomIndex = Math.floor(Math.random() * choicesList.length)
@@ -84,7 +100,16 @@ const RockPaperScissorHome = () => {
       (user.id === 'SCISSORS' && opponent.id === 'PAPER')
     ) {
       setGameStatus(gameStatusConstants.win)
-      setScore(prev => prev + 1)
+      const newScore = score + 1
+      setScore(newScore)
+      
+      // Update highest score if current score is higher
+      if (newScore > highestScore) {
+        setHighestScore(newScore)
+        saveToLocalStorage('rockPaperScissor', {
+          highestScore: newScore
+        })
+      }
     } else {
       setGameStatus(gameStatusConstants.lost)
       setScore(prev => prev - 1) // Allow negative scores
@@ -102,6 +127,14 @@ const RockPaperScissorHome = () => {
     setGameStatus(gameStatusConstants.inProgress)
     setUserChoice(null)
     setOpponentChoice(null)
+  }
+  
+  const openRulesModal = () => {
+    setIsRulesModalOpen(true)
+  }
+
+  const closeRulesModal = () => {
+    setIsRulesModalOpen(false)
   }
 
   const renderGameView = () => (
@@ -189,14 +222,72 @@ const RockPaperScissorHome = () => {
       className="rock-paper-scissor-container"
       data-testid="rockPaperScissors"
     >
-      <div className="game-header">
-        <Link to="/rock-paper-scissor" className='rock-paper-scissor-back-btn'>
+      <div className="rock-paper-scissor-header-buttons">
+        <Link to="/rock-paper-scissor">
             <BiArrowBack /> Back to Rules
         </Link>
-        <button type="button" onClick={() => alert('Rules Coming Soon...')}>
+        <button type="button" onClick={openRulesModal}>
             Rules
         </button>
       </div>
+
+      <hr style={{ border: '1px solid black', margin: '3px auto', width: '100%', height: '0' }} />
+      
+      {/* Rules Modal */}
+      <Modal
+        isOpen={isRulesModalOpen}
+        onRequestClose={closeRulesModal}
+        contentLabel="Game Rules"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <div className="modal-header">
+          <h2>Rules</h2>
+          <button
+            onClick={closeRulesModal}
+            className="close-button"
+            data-testid="close"
+          >
+            <CgClose />
+          </button>
+        </div>
+
+        <div className="rules-content">
+          <ul className="rules-list">
+            <li>
+              Rock beats Scissors
+            </li>
+            <li>
+              Scissors beats Paper
+            </li>
+            <li>
+              Paper beats Rock
+            </li>
+            <li>
+              If both players choose the same option, it's a draw
+            </li>
+            <li>
+              Win: +1 point
+            </li>
+            <li>
+              Lose: -1 point
+            </li>
+            <li>
+              Draw: No points
+            </li>
+          </ul>
+
+          <h3>Available Choices:</h3>
+          <ul className="choices-list-in-modal">
+            {choicesList.map(choice => (
+              <li key={choice.id}>
+                <img src={choice.image} alt={choice.alt} />
+                <span>{choice.id.toLowerCase()}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Modal>
       
       <div>
         <h1>ROCK PAPER SCISSOR</h1>
@@ -239,6 +330,10 @@ const RockPaperScissorHome = () => {
           <p className="score-text">Score</p>
           <p className="score-value" data-testid="score">
             {score}
+          </p>
+          <p className="highest-score-text">Highest Score</p>
+          <p className="highest-score-value">
+            {highestScore}
           </p>
         </div>
       </div>
