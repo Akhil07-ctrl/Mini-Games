@@ -6,7 +6,13 @@ import Modal from "react-modal"
 import { saveToLocalStorage, getFromLocalStorage } from '../../utils/localStorage'
 import './index.css'
 
-Modal.setAppElement('#root')
+// Set the app element for accessibility
+try {
+  Modal.setAppElement('#root')
+} catch (error) {
+  console.error('Error setting app element for Modal:', error)
+  // Fallback to setting ariaHideApp to false for all modals
+}
 
 const cardsData = [
   {
@@ -132,6 +138,11 @@ const CardFlipMemoryGameHome = () => {
     setCards(shuffledCards)
     setIsTimerRunning(true)
   }, [])
+  
+  // Log when modal state changes
+  useEffect(() => {
+    console.log('Stats modal state changed:', isStatsModalOpen)
+  }, [isStatsModalOpen])
 
   useEffect(() => {
     let timer
@@ -281,11 +292,13 @@ const CardFlipMemoryGameHome = () => {
 
   // Function to open stats modal
   const openStatsModal = () => {
+    console.log('Opening stats modal');
     setIsStatsModalOpen(true);
   };
 
   // Function to close stats modal
   const closeStatsModal = () => {
+    console.log('Closing stats modal');
     setIsStatsModalOpen(false);
   };
 
@@ -489,6 +502,7 @@ const CardFlipMemoryGameHome = () => {
         contentLabel="Game Rules"
         className="modal-content"
         overlayClassName="modal-overlay"
+        ariaHideApp={false}
       >
         <div className="modal-header">
           <h2>Rules</h2>
@@ -588,11 +602,162 @@ const CardFlipMemoryGameHome = () => {
         ))}
       </ul>
 
-      <div>
-        <button type="button" onClick={openStatsModal} className="stats-button">
-              View Stats
+      <div className="stats-button-container">
+        <button 
+          type="button" 
+          onClick={openStatsModal} 
+          className="stats-button"
+          style={{
+            backgroundColor: '#2196f3',
+            color: 'white',
+            padding: '10px 20px',
+            borderRadius: '4px',
+            fontWeight: 'bold',
+            marginTop: '15px',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)'
+          }}
+        >
+          View Stats
         </button>
       </div>
+      
+      {/* Stats Modal for main game view */}
+      <Modal
+        isOpen={isStatsModalOpen}
+        onRequestClose={closeStatsModal}
+        contentLabel="Game Statistics"
+        className="modal-content stats-modal-content"
+        overlayClassName="modal-overlay"
+        ariaHideApp={false}
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            zIndex: 1000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          },
+          content: {
+            position: 'relative',
+            top: 'auto',
+            left: 'auto',
+            right: 'auto',
+            bottom: 'auto',
+            maxWidth: '700px',
+            width: '90%',
+            padding: '25px',
+            borderRadius: '10px',
+            background: 'white',
+            maxHeight: '80vh',
+            overflow: 'auto'
+          }
+        }}
+      >
+        <div className="modal-header">
+          <h2>Game Statistics</h2>
+          <button
+            type="button"
+            onClick={closeStatsModal}
+            className="close-button"
+            aria-label="Close statistics"
+          >
+            <CgClose />
+          </button>
+        </div>
+        
+        <div className="stats-modal-body">
+          <div className="stats-section">
+            <h3>Overall Performance</h3>
+            <div className="stats-grid">
+              <div className="stat-item">
+                <span className="stat-label">Games Played:</span>
+                <span className="stat-value">{gameStats.gamesPlayed}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Games Won:</span>
+                <span className="stat-value">{gameStats.gamesWon}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Win Rate:</span>
+                <span className="stat-value">
+                  {gameStats.gamesPlayed > 0 
+                    ? `${Math.round((gameStats.gamesWon / gameStats.gamesPlayed) * 100)}%` 
+                    : '0%'}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="stats-section">
+            <h3>Best Performances</h3>
+            <div className="stats-grid">
+              <div className="stat-item">
+                <span className="stat-label">Highest Score:</span>
+                <span className="stat-value">{gameStats.highestScore}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Best Flip Count:</span>
+                <span className="stat-value">{gameStats.bestFlipCount || '-'}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Best Time:</span>
+                <span className="stat-value">{gameStats.bestTime ? formatTime(gameStats.bestTime) : '-'}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="stats-section">
+            <h3>Averages</h3>
+            <div className="stats-grid">
+              <div className="stat-item">
+                <span className="stat-label">Avg. Flips:</span>
+                <span className="stat-value">
+                  {gameStats.gamesWon > 0 
+                    ? Math.round(gameStats.totalFlips / gameStats.gamesWon) 
+                    : '-'}
+                </span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Avg. Time:</span>
+                <span className="stat-value">
+                  {gameStats.gamesWon > 0 
+                    ? formatTime(Math.round(gameStats.totalTimePlayed / gameStats.gamesWon)) 
+                    : '-'}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {gameStats.recentScores.length > 0 && (
+            <div className="stats-section">
+              <h3>Recent Games</h3>
+              <table className="recent-scores-table">
+                <thead>
+                  <tr>
+                    <th>Score</th>
+                    <th>Flips</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {gameStats.recentScores.map((game, index) => (
+                    <tr key={index}>
+                      <td>{game.score}</td>
+                      <td>{game.flipCount}</td>
+                      <td>{formatTime(game.timeSpent)}</td>
+                      <td>{new Date(game.date).toLocaleDateString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </Modal>
     </div>
   )
 }
