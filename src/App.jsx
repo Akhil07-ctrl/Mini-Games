@@ -13,7 +13,7 @@ import MemoryMatrixHome from './components/MemoryMatrixHome'
 import './App.css'
 
 const App = () => (
-  <Router basename='/Mini-Games'>
+  <Router>
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/emoji-game" element={<EmojiGame />} />
