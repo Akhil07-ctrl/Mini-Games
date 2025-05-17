@@ -172,10 +172,13 @@ const CardFlipMemoryGameHome = () => {
       const secondCard = cards.find(card => card.id === secondCardId)
 
       if (firstCard && secondCard && firstCard.name === secondCard.name) {
+        // It's a match
         setMatchedCards(prev => [...prev, firstCardId, secondCardId])
         setScore(prev => prev + 1)
+        // Clear flipped indices immediately for matched cards
         setFlippedIndices([])
       } else {
+        // Not a match - wait a moment before flipping back
         setTimeout(() => {
           setFlippedIndices([])
         }, 1000)
@@ -185,7 +188,7 @@ const CardFlipMemoryGameHome = () => {
   }, [flippedIndices, cards])
 
   useEffect(() => {
-    if (matchedCards.length === cards.length && cards.length > 0) {
+    if (matchedCards.length === cards.length && cards.length > 0 && !isGameOver) {
       setIsGameOver(true)
       setIsWon(true)
       setIsTimerRunning(false)
@@ -238,7 +241,7 @@ const CardFlipMemoryGameHome = () => {
       // Update state
       setGameStats(updatedStats)
     }
-  }, [matchedCards, cards.length, flipCount, timeLeft, gameStats])
+  }, [matchedCards, cards.length, flipCount, timeLeft, gameStats, isGameOver])
 
   const openRulesModal = () => {
     setIsRulesModalOpen(true)
@@ -590,6 +593,14 @@ const CardFlipMemoryGameHome = () => {
                 flippedIndices.length >= 2 ||
                 matchedCards.includes(card.id) ||
                 isGameOver
+              }
+              className={
+                // Simplified class logic to avoid animation persistence issues
+                matchedCards.includes(card.id)
+                  ? 'permanently-matched-card' // Always use this for matched cards
+                  : flippedIndices.includes(card.id)
+                  ? 'flipped-card' // Simple class for flipped cards
+                  : ''
               }
             >
               {flippedIndices.includes(card.id) || matchedCards.includes(card.id) ? (

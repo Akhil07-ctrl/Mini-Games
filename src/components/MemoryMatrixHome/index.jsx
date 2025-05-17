@@ -24,6 +24,7 @@ const MemoryMatrixGame = () => {
   const [level, setLevel] = useState(1)
   const [grid, setGrid] = useState([])
   const [highlightedCells, setHighlightedCells] = useState([])
+  const [clickedCells, setClickedCells] = useState([])
   const [disabled, setDisabled] = useState(true)
   const [resultMessage, setResultMessage] = useState('')
   const [progress, setProgress] = useState(0)
@@ -82,6 +83,7 @@ const MemoryMatrixGame = () => {
     const highlights = shuffle(cells).slice(0, N)
     setGrid(cells)
     setHighlightedCells(highlights)
+    setClickedCells([]) // Reset clicked cells for new level
     setDisabled(true)
     setTimeout(() => setDisabled(false), N * 1000)
     // no-click timeout
@@ -112,6 +114,9 @@ const MemoryMatrixGame = () => {
 
   const handleCellClick = i => {
     if (disabled) return
+    // Add to clicked cells regardless of whether it's correct or not
+    setClickedCells(prev => [...prev, i])
+    
     if (!highlightedCells.includes(i)) {
       handleLoss()
     } else {
@@ -132,6 +137,7 @@ const MemoryMatrixGame = () => {
     setLevel(1)
     setProgress(0)
     setResultMessage('')
+    setClickedCells([])
     setView('game')
   }
 
@@ -229,11 +235,15 @@ const MemoryMatrixGame = () => {
                       ? 'highlighted'
                       : 'notHighlighted'
                   }
-                  disabled={disabled}
+                  disabled={disabled || clickedCells.includes(i)}
                   className={
                     disabled && highlightedCells.includes(i)
                       ? 'highlighted-cell'
-                      : 'normal-cell'
+                      : clickedCells.includes(i)
+                        ? highlightedCells.includes(i)
+                          ? 'clicked-correct-cell'
+                          : 'clicked-wrong-cell'
+                        : 'normal-cell'
                   }
                   onClick={() => handleCellClick(i)}
                 />

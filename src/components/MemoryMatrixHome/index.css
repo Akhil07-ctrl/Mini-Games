@@ -141,6 +141,32 @@
   background-color: #fff;
 }
 
+.clicked-correct-cell {
+  background-color: #2196f3 !important;
+  border-color: #1976d2 !important;
+  animation: pulse 0.5s;
+}
+
+.clicked-wrong-cell {
+  background-color: #f44336 !important;
+  border-color: #d32f2f !important;
+  animation: shake 0.5s;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
 /* Results view styles */
 .results-view {
   display: flex;

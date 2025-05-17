@@ -148,6 +148,24 @@
   object-fit: contain;
 }
 
+/* Card styles */
+.flipped-card {
+  transform: rotateY(180deg);
+  background-color: #e3f2fd !important;
+  border-color: #2196f3 !important;
+}
+
+.permanently-matched-card {
+  border-color: #4caf50 !important;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5) !important;
+  opacity: 0.9;
+}
+
+/* Remove all animations to prevent persistence issues */
+.cards-list button {
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
 /* Modal Styles */
 .modal-overlay {
   position: fixed;
