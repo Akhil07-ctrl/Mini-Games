@@ -1,12 +1,56 @@
-# React + Vite
+# Mini Games Collection
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A collection of fun and interactive mini games built with React and Vite.
 
-Currently, two official plugins are available:
+## 🎮 Games Included
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Emoji Game** - Test your memory by matching emojis
+- **Memory Matrix** - Challenge your recall ability with a grid-based memory game
+- **Rock Paper Scissors** - The classic hand game reimagined for digital play
+- **Card-Flip Memory Game** - Find matching pairs by flipping cards
 
-## Expanding the ESLint configuration
+## 🚀 Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- React Router v7
+- Vite 6
+- CSS for styling
+- React Icons
+- React Modal
+
+## 🛠️ Setup and Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+4. Open your browser and navigate to the local server address shown in your terminal
+
+## 📦 Build for Production
+
+```
+npm run build
+```
+
+## 🌐 Deployment
+
+This project is configured for GitHub Pages deployment:
+
+```
+npm run deploy
+```
+
+## 👨‍💻 Developer
+
+Made with ❤️ by Kundena Akhil
+- [LinkedIn](https://www.linkedin.com/in/kundena-akhil-4b7073170/)
+- [GitHub](https://github.com/Akhil07-ctrl)
+
+## 📄 License
+
+© 2025 Mini Games, Inc. All Rights Reserved.
